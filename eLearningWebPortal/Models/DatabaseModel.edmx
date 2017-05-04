@@ -1,0 +1,839 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="FkQuestionId" Type="int" Nullable="false" />
+          <Property Name="IsCorrect" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CourseMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="FkCourseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="FkProgramId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="FkProgramId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FkCourseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
+          <Property Name="FkCourseId" Type="int" Nullable="false" />
+          <Property Name="Marks" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="To" Type="datetime" Nullable="false" />
+          <Property Name="From" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuizCandidates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FkQuizId" Type="int" Nullable="false" />
+          <Property Name="FkMemberId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuizQuestions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FkQuestionId" Type="int" Nullable="false" />
+          <Property Name="FkQuizId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentQuiz">
+          <Key>
+            <PropertyRef Name="StudentQuizId" />
+          </Key>
+          <Property Name="StudentQuizId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FkStudentId" Type="int" Nullable="false" />
+          <Property Name="FkQuizId" Type="int" Nullable="false" />
+          <Property Name="TotalMarks" Type="int" Nullable="false" />
+          <Property Name="LastAttendedQuestion" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentQuizQuestions">
+          <Key>
+            <PropertyRef Name="SQId" />
+          </Key>
+          <Property Name="SQId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QId" Type="int" Nullable="false" />
+          <Property Name="AId" Type="int" Nullable="false" />
+          <Property Name="Attended" Type="bit" />
+          <Property Name="Marks" Type="int" Nullable="false" />
+          <Property Name="FkStudentQuizId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="FkCourseId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_answers_answers">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="FkQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseMaterial_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="CourseMaterial" Type="Self.CourseMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseMaterial">
+              <PropertyRef Name="FkCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Courses_Program">
+          <End Role="Program" Type="Self.Program" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="FkProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_Courses">
+          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="FkProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_Courses1">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="FkCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizCandidates_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="QuizCandidates" Type="Self.QuizCandidates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuizCandidates">
+              <PropertyRef Name="FkMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizCandidates_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuizCandidates" Type="Self.QuizCandidates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuizCandidates">
+              <PropertyRef Name="FkQuizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuestions_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuizQuestions" Type="Self.QuizQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuizQuestions">
+              <PropertyRef Name="FkQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuestions_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuizQuestions" Type="Self.QuizQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuizQuestions">
+              <PropertyRef Name="FkQuizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentQuiz_Quiz">
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentQuiz" Type="Self.StudentQuiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentQuiz">
+              <PropertyRef Name="FkQuizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjects_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subjects">
+              <PropertyRef Name="FkCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreContainer">
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseMaterial" EntityType="Self.CourseMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuizCandidates" EntityType="Self.QuizCandidates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuizQuestions" EntityType="Self.QuizQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentQuiz" EntityType="Self.StudentQuiz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentQuizQuestions" EntityType="Self.StudentQuizQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_answers_answers" Association="Self.FK_answers_answers">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseMaterial_Courses" Association="Self.FK_CourseMaterial_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseMaterial" EntitySet="CourseMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Courses_Program" Association="Self.FK_Courses_Program">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_Courses" Association="Self.FK_Members_Courses">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_Courses1" Association="Self.FK_Members_Courses1">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizCandidates_Members" Association="Self.FK_QuizCandidates_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="QuizCandidates" EntitySet="QuizCandidates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizCandidates_Quiz" Association="Self.FK_QuizCandidates_Quiz">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="QuizCandidates" EntitySet="QuizCandidates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuestions_Questions" Association="Self.FK_QuizQuestions_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuestions_Quiz" Association="Self.FK_QuizQuestions_Quiz">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="QuizQuestions" EntitySet="QuizQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentQuiz_Quiz" Association="Self.FK_StudentQuiz_Quiz">
+            <End Role="Quiz" EntitySet="Quiz" />
+            <End Role="StudentQuiz" EntitySet="StudentQuiz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjects_Courses" Association="Self.FK_Subjects_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Subjects" EntitySet="Subjects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ELearningModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="ELearningModel.Answer" />
+          <EntitySet Name="CourseMaterials" EntityType="ELearningModel.CourseMaterial" />
+          <EntitySet Name="Courses" EntityType="ELearningModel.Cours" />
+          <EntitySet Name="Members" EntityType="ELearningModel.Member" />
+          <EntitySet Name="Programs" EntityType="ELearningModel.Program" />
+          <EntitySet Name="Questions" EntityType="ELearningModel.Question" />
+          <EntitySet Name="Quizs" EntityType="ELearningModel.Quiz" />
+          <EntitySet Name="QuizCandidates" EntityType="ELearningModel.QuizCandidate" />
+          <EntitySet Name="QuizQuestions" EntityType="ELearningModel.QuizQuestion" />
+          <EntitySet Name="StudentQuizs" EntityType="ELearningModel.StudentQuiz" />
+          <EntitySet Name="StudentQuizQuestions" EntityType="ELearningModel.StudentQuizQuestion" />
+          <EntitySet Name="Subjects" EntityType="ELearningModel.Subject" />
+          <AssociationSet Name="FK_answers_answers" Association="ELearningModel.FK_answers_answers">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseMaterial_Courses" Association="ELearningModel.FK_CourseMaterial_Courses">
+            <End Role="Cours" EntitySet="Courses" />
+            <End Role="CourseMaterial" EntitySet="CourseMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Courses_Program" Association="ELearningModel.FK_Courses_Program">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Cours" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_Courses1" Association="ELearningModel.FK_Members_Courses1">
+            <End Role="Cours" EntitySet="Courses" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjects_Courses" Association="ELearningModel.FK_Subjects_Courses">
+            <End Role="Cours" EntitySet="Courses" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_Courses" Association="ELearningModel.FK_Members_Courses">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizCandidates_Members" Association="ELearningModel.FK_QuizCandidates_Members">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="QuizCandidate" EntitySet="QuizCandidates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuestions_Questions" Association="ELearningModel.FK_QuizQuestions_Questions">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuizQuestion" EntitySet="QuizQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizCandidates_Quiz" Association="ELearningModel.FK_QuizCandidates_Quiz">
+            <End Role="Quiz" EntitySet="Quizs" />
+            <End Role="QuizCandidate" EntitySet="QuizCandidates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuizQuestions_Quiz" Association="ELearningModel.FK_QuizQuestions_Quiz">
+            <End Role="Quiz" EntitySet="Quizs" />
+            <End Role="QuizQuestion" EntitySet="QuizQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentQuiz_Quiz" Association="ELearningModel.FK_StudentQuiz_Quiz">
+            <End Role="Quiz" EntitySet="Quizs" />
+            <End Role="StudentQuiz" EntitySet="StudentQuizs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FkQuestionId" Type="Int32" Nullable="false" />
+          <Property Name="IsCorrect" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="ELearningModel.FK_answers_answers" FromRole="Answer" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="CourseMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="FkCourseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="ELearningModel.FK_CourseMaterial_Courses" FromRole="CourseMaterial" ToRole="Cours" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="FkProgramId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CourseMaterials" Relationship="ELearningModel.FK_CourseMaterial_Courses" FromRole="Cours" ToRole="CourseMaterial" />
+          <NavigationProperty Name="Program" Relationship="ELearningModel.FK_Courses_Program" FromRole="Cours" ToRole="Program" />
+          <NavigationProperty Name="Members" Relationship="ELearningModel.FK_Members_Courses1" FromRole="Cours" ToRole="Member" />
+          <NavigationProperty Name="Subjects" Relationship="ELearningModel.FK_Subjects_Courses" FromRole="Cours" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FkProgramId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FkCourseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="ELearningModel.FK_Members_Courses1" FromRole="Member" ToRole="Cours" />
+          <NavigationProperty Name="Program" Relationship="ELearningModel.FK_Members_Courses" FromRole="Member" ToRole="Program" />
+          <NavigationProperty Name="QuizCandidates" Relationship="ELearningModel.FK_QuizCandidates_Members" FromRole="Member" ToRole="QuizCandidate" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Courses" Relationship="ELearningModel.FK_Courses_Program" FromRole="Program" ToRole="Cours" />
+          <NavigationProperty Name="Members" Relationship="ELearningModel.FK_Members_Courses" FromRole="Program" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FkCourseId" Type="Int32" Nullable="false" />
+          <Property Name="Marks" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answers" Relationship="ELearningModel.FK_answers_answers" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="QuizQuestions" Relationship="ELearningModel.FK_QuizQuestions_Questions" FromRole="Question" ToRole="QuizQuestion" />
+        </EntityType>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="To" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="From" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="QuizCandidates" Relationship="ELearningModel.FK_QuizCandidates_Quiz" FromRole="Quiz" ToRole="QuizCandidate" />
+          <NavigationProperty Name="QuizQuestions" Relationship="ELearningModel.FK_QuizQuestions_Quiz" FromRole="Quiz" ToRole="QuizQuestion" />
+          <NavigationProperty Name="StudentQuizs" Relationship="ELearningModel.FK_StudentQuiz_Quiz" FromRole="Quiz" ToRole="StudentQuiz" />
+        </EntityType>
+        <EntityType Name="QuizCandidate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FkQuizId" Type="Int32" Nullable="false" />
+          <Property Name="FkMemberId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="ELearningModel.FK_QuizCandidates_Members" FromRole="QuizCandidate" ToRole="Member" />
+          <NavigationProperty Name="Quiz" Relationship="ELearningModel.FK_QuizCandidates_Quiz" FromRole="QuizCandidate" ToRole="Quiz" />
+        </EntityType>
+        <EntityType Name="QuizQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FkQuestionId" Type="Int32" Nullable="false" />
+          <Property Name="FkQuizId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="ELearningModel.FK_QuizQuestions_Questions" FromRole="QuizQuestion" ToRole="Question" />
+          <NavigationProperty Name="Quiz" Relationship="ELearningModel.FK_QuizQuestions_Quiz" FromRole="QuizQuestion" ToRole="Quiz" />
+        </EntityType>
+        <EntityType Name="StudentQuiz">
+          <Key>
+            <PropertyRef Name="StudentQuizId" />
+          </Key>
+          <Property Name="StudentQuizId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FkStudentId" Type="Int32" Nullable="false" />
+          <Property Name="FkQuizId" Type="Int32" Nullable="false" />
+          <Property Name="TotalMarks" Type="Int32" Nullable="false" />
+          <Property Name="LastAttendedQuestion" Type="Int32" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Quiz" Relationship="ELearningModel.FK_StudentQuiz_Quiz" FromRole="StudentQuiz" ToRole="Quiz" />
+        </EntityType>
+        <EntityType Name="StudentQuizQuestion">
+          <Key>
+            <PropertyRef Name="SQId" />
+          </Key>
+          <Property Name="SQId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QId" Type="Int32" Nullable="false" />
+          <Property Name="AId" Type="Int32" Nullable="false" />
+          <Property Name="Attended" Type="Boolean" />
+          <Property Name="Marks" Type="Int32" Nullable="false" />
+          <Property Name="FkStudentQuizId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="FkCourseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="ELearningModel.FK_Subjects_Courses" FromRole="Subject" ToRole="Cours" />
+        </EntityType>
+        <Association Name="FK_answers_answers">
+          <End Type="ELearningModel.Question" Role="Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearningModel.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="FkQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseMaterial_Courses">
+          <End Type="ELearningModel.Cours" Role="Cours" Multiplicity="1" />
+          <End Type="ELearningModel.CourseMaterial" Role="CourseMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseMaterial">
+              <PropertyRef Name="FkCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Courses_Program">
+          <End Type="ELearningModel.Program" Role="Program" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearningModel.Cours" Role="Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cours">
+              <PropertyRef Name="FkProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_Courses1">
+          <End Type="ELearningModel.Cours" Role="Cours" Multiplicity="1" />
+          <End Type="ELearningModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="FkCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjects_Courses">
+          <End Type="ELearningModel.Cours" Role="Cours" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearningModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="FkCourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_Courses">
+          <End Type="ELearningModel.Program" Role="Program" Multiplicity="1" />
+          <End Type="ELearningModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="FkProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizCandidates_Members">
+          <End Type="ELearningModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="ELearningModel.QuizCandidate" Role="QuizCandidate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuizCandidate">
+              <PropertyRef Name="FkMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuestions_Questions">
+          <End Type="ELearningModel.Question" Role="Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearningModel.QuizQuestion" Role="QuizQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuizQuestion">
+              <PropertyRef Name="FkQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizCandidates_Quiz">
+          <End Type="ELearningModel.Quiz" Role="Quiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearningModel.QuizCandidate" Role="QuizCandidate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuizCandidate">
+              <PropertyRef Name="FkQuizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuizQuestions_Quiz">
+          <End Type="ELearningModel.Quiz" Role="Quiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearningModel.QuizQuestion" Role="QuizQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuizQuestion">
+              <PropertyRef Name="FkQuizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentQuiz_Quiz">
+          <End Type="ELearningModel.Quiz" Role="Quiz" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ELearningModel.StudentQuiz" Role="StudentQuiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quiz">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentQuiz">
+              <PropertyRef Name="FkQuizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StoreContainer" CdmEntityContainer="Entities" >
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="ELearningModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+                <ScalarProperty Name="FkQuestionId" ColumnName="FkQuestionId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseMaterials">
+            <EntityTypeMapping TypeName="ELearningModel.CourseMaterial">
+              <MappingFragment StoreEntitySet="CourseMaterial">
+                <ScalarProperty Name="FkCourseId" ColumnName="FkCourseId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="ELearningModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="FkProgramId" ColumnName="FkProgramId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="ELearningModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="FkCourseId" ColumnName="FkCourseId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="FkProgramId" ColumnName="FkProgramId" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="ELearningModel.Program">
+              <MappingFragment StoreEntitySet="Program">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="ELearningModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="FkCourseId" ColumnName="FkCourseId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quizs">
+            <EntityTypeMapping TypeName="ELearningModel.Quiz">
+              <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizCandidates">
+            <EntityTypeMapping TypeName="ELearningModel.QuizCandidate">
+              <MappingFragment StoreEntitySet="QuizCandidates">
+                <ScalarProperty Name="FkMemberId" ColumnName="FkMemberId" />
+                <ScalarProperty Name="FkQuizId" ColumnName="FkQuizId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizQuestions">
+            <EntityTypeMapping TypeName="ELearningModel.QuizQuestion">
+              <MappingFragment StoreEntitySet="QuizQuestions">
+                <ScalarProperty Name="FkQuizId" ColumnName="FkQuizId" />
+                <ScalarProperty Name="FkQuestionId" ColumnName="FkQuestionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentQuizs">
+            <EntityTypeMapping TypeName="ELearningModel.StudentQuiz">
+              <MappingFragment StoreEntitySet="StudentQuiz">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastAttendedQuestion" ColumnName="LastAttendedQuestion" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="FkQuizId" ColumnName="FkQuizId" />
+                <ScalarProperty Name="FkStudentId" ColumnName="FkStudentId" />
+                <ScalarProperty Name="StudentQuizId" ColumnName="StudentQuizId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentQuizQuestions">
+            <EntityTypeMapping TypeName="ELearningModel.StudentQuizQuestion">
+              <MappingFragment StoreEntitySet="StudentQuizQuestions">
+                <ScalarProperty Name="FkStudentQuizId" ColumnName="FkStudentQuizId" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="Attended" ColumnName="Attended" />
+                <ScalarProperty Name="AId" ColumnName="AId" />
+                <ScalarProperty Name="QId" ColumnName="QId" />
+                <ScalarProperty Name="SQId" ColumnName="SQId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="ELearningModel.Subject">
+              <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="FkCourseId" ColumnName="FkCourseId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

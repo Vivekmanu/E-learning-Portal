@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using eLearningWebPortal.Models;
 
 namespace eLearningWebPortal
 {
@@ -21,9 +22,13 @@ namespace eLearningWebPortal
             var email = txtEmail.Text;
             var password = txtPwd.Text;
 
-            if(email == "inbox4tarun@gmail.com" && password == "yspl2009")
+            var db = new Entities();
+            var user = db.Members.SingleOrDefault(x=> x.Email == email && x.Password == password);
+
+            if(user != null)
             {
                 //valid user : redirect to default page
+                Session["User"] = user;
                 FormsAuthentication.RedirectFromLoginPage(email, true);
             }
             else

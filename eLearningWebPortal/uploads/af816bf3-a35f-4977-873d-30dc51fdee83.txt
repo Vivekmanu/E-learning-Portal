@@ -1,0 +1,431 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    //program 
+
+
+
+
+
+
+    //    program to reverse an array
+    //    class program6
+    //    {
+    //        public static void arrreverse(int[] arr, int start, int end)
+    //        {
+    //            while (start < end)
+    //            {
+    //                int temp = arr[start];
+    //                arr[start] = arr[end];
+    //                arr[end] = temp;
+    //                start++;
+    //                end--;
+    //            }
+
+    //        }
+
+    //        public static void arrprint(int[] arr, int n)
+    //        {
+    //            for (int i = 0; i < n; i++)
+    //            {
+
+    //                Console.Write("{0}", arr[i]);
+
+    //            }
+
+    //        }
+
+
+    //        public static void Main(string[] args)
+    //        {
+    //            int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    //            arrreverse(arr, 0, 9);
+    //            arrprint(arr, 10);
+    //            Console.ReadLine();
+    //        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //    }
+
+
+
+
+
+    ///=====================REVERSE ALGORITHM FOR ARRAY ROTATION===============
+
+
+
+
+
+    //class program5
+    //{
+    //    static void rotation(int[] arr, int m, int n)
+    //    {
+    //        reverse(arr,0,n-1);
+    //        reverse(arr,n,m);
+    //        reverse(arr,0,m);
+
+
+    //    }
+    //    static void reverse(int []arr , int start , int end)
+    //    {
+    //        while (start < end)
+    //        {
+    //            int temp = arr[start];
+    //            arr[start] = arr[end];
+    //            arr[end] = temp;
+    //            start++;
+    //            end--;
+    //        }
+    //    }
+
+
+
+
+
+    //    public static void arrprint(int[] arr, int n)
+    //    {
+    //        for (int i = 0; i < n; i++)
+    //        {
+    //            Console.Write("{0}", arr[i]);
+
+    //        }
+
+    //    }
+
+
+    //    public static void Main(string[] args)
+    //    {
+    //        int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    //        rotation(arr, 9, 10);
+    //        arrprint(arr, 10);
+    //        Console.ReadLine();
+    //    }
+
+
+
+
+
+    //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //  A Juggling Algorithm)
+    //class program4
+    //{
+    //    public static void leftrotate(int[] arr, int n, int d)
+    //    {
+    //        int i, j, k, temp;
+    //        for (i = 0; i < gcd(d, n); i++)
+    //        {
+    //            /* move i-th values of blocks */
+    //            temp = arr[i];
+    //            j = i;
+    //            while (true)
+    //            {
+    //                k = j + d;
+    //                if (k >= n)
+    //                    k = k - n;
+    //                if (k == i)
+    //                    break;
+    //                arr[j] = arr[k];
+    //                j = k;
+    //            }
+    //            arr[j] = temp;
+    //        }
+
+
+
+    //    }
+
+    //    public static int gcd(int m, int n)
+    //    {
+    //        if (n == 0)
+
+    //            return m;
+    //        else
+    //            return gcd(n, m % n);
+    //    }
+    //    public static void print(int[] dataset, int n)
+    //    {
+    //        Console.Write(" rotated array       int[] arr =");
+    //        for (int i = 0; i < 10; i++)
+    //        {
+    //            Console.Write("{0} ", dataset[i]);
+    //        }
+    //    }
+
+    //    public static void Main(string[] args)
+    //    {
+    //        int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    //        Console.Write("int[] arr =");
+    //        for (int i = 0; i < 10; i++)
+    //        {
+
+    //            Console.Write("{0}", arr[i]);
+    //        }
+    //        Console.WriteLine("\nuser enter the number of times you want to rotate array");
+    //        int n = Int32.Parse(Console.ReadLine());
+    //        int[] temp = new int[n];
+
+    //        leftrotate(arr, arr.Length, n);
+    //        gcd(arr.Length, n);
+    //        print(arr, 10);
+    //        Console.ReadLine();
+
+
+
+
+    //    }
+
+
+
+
+
+
+
+
+    //}
+
+
+
+    //    //   program for array rotation (left rotate by one )
+    //    //Time complexity: O(n*d)
+    //   // Auxiliary Space: O(1)
+
+
+
+    //    class program3 {
+
+    //        public static void leftrotate(int[] dataset , int m ,int n)
+    //        {
+    //            for (int i = 0; i < n; i++)
+    //            {
+    //                leftrotatebyone(dataset,m,n);
+    //            }
+    //        }
+
+    //        public static void leftrotatebyone(int[] arr, int m, int n)
+    //        {
+    //            int temp = arr[0];
+    //            for (int i = 0; i < m-1; i++)
+    //            {
+    //                arr[i] = arr[i + 1];
+    //            }
+    //            arr[m - 1] = temp;
+
+
+
+
+    //        }
+    //        public static void print(int[] dataset, int n)
+    //        {
+    //            Console.Write(" rotated array       int[] arr =");
+    //            for (int i = 0; i < 10; i++)
+    //            {
+    //                Console.Write("{0} ", dataset[i]);
+    //            }
+
+
+    //        }
+
+
+
+
+    //        public static void Main(string[] args)
+    //        {
+    //            int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    //            Console.Write("int[] arr =");
+    //            for (int i = 0; i < 10; i++)
+    //            {
+
+    //                Console.Write("{0}", arr[i]);
+    //            }
+    //            Console.WriteLine("\nuser enter the number of times you want to rotate array");
+    //            int n = Int32.Parse(Console.ReadLine());
+    //            int[] temp = new int[n];
+
+    //            leftrotate(arr,arr.Length, n);
+    //            print(arr, 10);
+    //            Console.ReadLine();
+
+
+
+    //        }
+
+
+
+
+
+
+
+
+
+
+    //    }
+
+
+
+
+    ////Program for array rotation(use temp array )
+    // //Time complexity O(n)
+    // //Auxiliary Space: O(d)
+
+    //    class program1
+
+
+    //    {
+    //        public static void rotate(int[] dataset, int[] temp, int m, int n)
+    //        {
+    //            Console.WriteLine("---------shift values to right--------------");
+    //            for (int i = 0; i < n; i++)// storing in temp 
+    //            {
+    //                temp[i] = dataset[i];
+    //            }
+
+    //            Console.WriteLine("---------shift values to left--------------");
+    //            int k = 0;
+    //            for (int j = n; j < m; j++)//right shift the array 
+    //            {
+    //                dataset[k] = dataset[j];
+    //                k++;
+    //            }
+
+    //            var start = m - n;
+    //            for (int i = 0; i < n; i++)// storing in temp 
+    //            {
+
+    //                dataset[start] = temp[i];
+    //                start ++;
+    //            }
+    //        }
+    //        public static void print(int[] dataset, int n)
+    //        {
+    //            Console.Write(" rotated array       int[] arr =");
+    //            for (int i = 0; i < 10; i++)
+    //            {
+    //                Console.Write("{0} ", dataset[i]);
+    //            }
+
+
+    //           }
+    //         public static void Main(string[] args)        
+    //        {
+    //            int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    //            Console.Write("int[] arr =");
+    //            for (int i = 0; i < 10; i++)
+    //            {
+
+    //                  Console.Write("{0}", arr[i]);
+    //            }
+    //            Console.WriteLine("\nuser enter the number of times you want to rotate array");
+    //            int n = Int32.Parse(Console.ReadLine());
+    //            int[] temp = new int[n ];
+
+    //            rotate(arr, temp, 10, n);
+    //           print(arr, 10);
+    //            Console.ReadLine();
+
+
+
+    //        }
+
+
+
+    // }
+
+
+
+
+    //    class Program
+    //        //Merge an array of size n into another array of size m+n
+    //    {
+
+
+
+    //        static void Main(string[] args)
+    //        {
+    //            int?[] mplusn = { 0, 1, 2, null, 4, null, 6, null };
+    //            int[] n = { 3, 5, 7 };
+    //            int fir = mplusn.Length;
+    //            int sec = n.Length;
+    //            shift(mplusn, fir);
+
+    //            merge(mplusn, n, fir, sec);
+    //            printArray(mplusn, fir);
+
+    //        }
+
+    //        static void shift(int?[] arr, int n)// Move to end
+    //        {
+    //            int j = n - 1;
+    //            for (int i = n - 1; i >= 0; i--)
+    //            {
+
+    //                string str = "NA";
+    //                if (arr[i].HasValue)
+
+    //                    if (str != arr[i].ToString())
+    //                    {
+    //                        arr[j] = arr[i];
+    //                        j--;
+    //                    }
+    //            }
+    //        }
+    //        static void merge(int?[] arr1, int[] arr2, int n, int m)
+    //        {
+    //            int k = 0;
+
+    //            while (k != m)
+
+    //            {
+    //                arr1[k] = arr2[k];
+    //                k++;
+
+    //            }
+    //            Array.Sort(arr1);
+    //        }
+    //        static void printArray(int?[] arr1, int n)
+    //        {
+    //            for (int q = 0; q < n; q++)
+    //                Console.WriteLine(arr1[q]);
+
+    //            Console.WriteLine("\n");
+    //            Console.ReadLine();
+
+    //        }
+
+
+    //    }
+}
+
+

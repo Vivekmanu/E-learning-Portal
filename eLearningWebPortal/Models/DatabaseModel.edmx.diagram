@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7fcb284a0ca64ba1a11d7bde95957fc8" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="ELearningModel.Answer" Width="1.5" PointX="12.125" PointY="3.625" />
+        <EntityTypeShape EntityType="ELearningModel.CourseMaterial" Width="1.5" PointX="2" PointY="3.875" />
+        <EntityTypeShape EntityType="ELearningModel.Cours" Width="1.5" PointX="2.25" PointY="0.625" />
+        <EntityTypeShape EntityType="ELearningModel.Member" Width="1.5" PointX="4.875" PointY="3.125" />
+        <EntityTypeShape EntityType="ELearningModel.Program" Width="1.5" PointX="0.5" PointY="0.625" />
+        <EntityTypeShape EntityType="ELearningModel.Question" Width="1.5" PointX="7.125" PointY="3.375" />
+        <EntityTypeShape EntityType="ELearningModel.Quiz" Width="1.5" PointX="6" PointY="0.5" />
+        <EntityTypeShape EntityType="ELearningModel.QuizCandidate" Width="1.5" PointX="11" PointY="1.125" />
+        <EntityTypeShape EntityType="ELearningModel.QuizQuestion" Width="1.5" PointX="8.75" PointY="0.625" />
+        <EntityTypeShape EntityType="ELearningModel.StudentQuiz" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ELearningModel.StudentQuizQuestion" Width="1.5" PointX="12.75" PointY="0.875" />
+        <EntityTypeShape EntityType="ELearningModel.Subject" Width="1.5" PointX="4" PointY="0.625" />
+        <AssociationConnector Association="ELearningModel.FK_answers_answers" />
+        <AssociationConnector Association="ELearningModel.FK_CourseMaterial_Courses" />
+        <AssociationConnector Association="ELearningModel.FK_Courses_Program" />
+        <AssociationConnector Association="ELearningModel.FK_Members_Courses1" />
+        <AssociationConnector Association="ELearningModel.FK_Subjects_Courses" />
+        <AssociationConnector Association="ELearningModel.FK_Members_Courses" />
+        <AssociationConnector Association="ELearningModel.FK_QuizCandidates_Members" />
+        <AssociationConnector Association="ELearningModel.FK_QuizQuestions_Questions" />
+        <AssociationConnector Association="ELearningModel.FK_QuizCandidates_Quiz" />
+        <AssociationConnector Association="ELearningModel.FK_QuizQuestions_Quiz" />
+        <AssociationConnector Association="ELearningModel.FK_StudentQuiz_Quiz" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

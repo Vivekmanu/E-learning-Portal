@@ -1,0 +1,32 @@
+E-Learning Portal
+=================
+
+1. There will be three kinds of users.
+	1. Admin
+	2. Professor
+	3. Student
+
+2. Admin user can create accounts for students and professors.
+3. Students can also register to the portal with following details.
+	- Registration Number
+	- Email address
+	- Password
+4. After registration students can login with specified email address and password.
+5. Professors can create questions and answers for the objective tests.
+6. Students can take such test for their practice.
+7. Professors can upload course material in the form of pdf files against a particular course or program.
+8. Students can download such materials but only if belongs to such course or program.
+9. Students can also create questions and answers but such questions and answers will not be available until admin/professor who created such material approve the same.
+
+There are some features like
+- Change password
+- Logout
+- profile
+
+Technologies to be used are
+
+Microsoft
+==================
+C# .NET
+.NET Framework 4.5
+SQL Server 2014

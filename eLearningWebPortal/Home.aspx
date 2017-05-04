@@ -7,10 +7,10 @@
       <div id="hero" class="jumbotron">
        <h1><strong>Welcome To the  E - Learning Portal</strong></h1>
         <p class="lead">
-          Please login to get started.
+          Please Sign up to get started.
         </p>
         <p>
-          <a href="Login" class="btn btn-lg btn-primary">Login</a>
+          <a href="Register" class="btn btn-lg btn-primary">Sign up</a>
         </p>
       </div>
     </div>

@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -71,6 +79,10 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.EntityDataSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.EntityDataSource.6.0.0\lib\net40\Microsoft.AspNet.EntityDataSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -81,6 +93,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -132,20 +146,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AnswerList.aspx" />
     <Content Include="ChangePassword.aspx" />
-    <Content Include="CHE.aspx" />
-    <Content Include="CIVIL.aspx" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="CourseList.aspx" />
+    <Content Include="CourseMaterial.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="CSE.aspx" />
+    <Content Include="CreateCourse.aspx" />
+    <Content Include="CreateProgram.aspx" />
+    <Content Include="CreateSubject.aspx" />
     <Content Include="Diploma.aspx" />
-    <Content Include="ECE.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -153,20 +173,43 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EntityDeploy Include="Models\DatabaseModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DatabaseModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="MemberList.aspx" />
+    <Content Include="Models\DatabaseModel.edmx.diagram">
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Home.aspx" />
-    <Content Include="HSS.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="Mathematiics.aspx" />
-    <Content Include="MECH.aspx" />
+    <Content Include="Models\DatabaseModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>DatabaseModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DatabaseModel.edmx.sql" />
+    <Content Include="Models\DatabaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>DatabaseModel.cs</LastGenOutput>
+    </Content>
     <Content Include="multiplechoicequiz.aspx" />
-    <Content Include="Personal Details.aspx" />
-    <Content Include="Physics.aspx" />
-    <Content Include="Profile.aspx" />
+    <Content Include="ProgramList.aspx" />
     <Content Include="Question.aspx" />
-    <Content Include="Quiz.aspx" />
+    <Content Include="QuestionList.aspx" />
+    <Content Include="QuestionSelection.aspx" />
+    <Content Include="QuizCandidates.aspx" />
+    <Content Include="QuizList.aspx" />
+    <Content Include="QuizPage.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="Resoursce.aspx" />
+    <Content Include="RegisterProfessor.aspx" />
+    <Content Include="RegistrationConfirmation.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -174,6 +217,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
@@ -202,6 +246,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="StudentQuiz.aspx" />
+    <Content Include="StudentQuizList.aspx" />
+    <Content Include="SubjecctList.aspx" />
+    <Content Include="QuizQuestions.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -219,6 +267,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnswerList.aspx.cs">
+      <DependentUpon>AnswerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnswerList.aspx.designer.cs">
+      <DependentUpon>AnswerList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -235,19 +290,19 @@
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CHE.aspx.cs">
-      <DependentUpon>CHE.aspx</DependentUpon>
+    <Compile Include="CourseList.aspx.cs">
+      <DependentUpon>CourseList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CHE.aspx.designer.cs">
-      <DependentUpon>CHE.aspx</DependentUpon>
+    <Compile Include="CourseList.aspx.designer.cs">
+      <DependentUpon>CourseList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CIVIL.aspx.cs">
-      <DependentUpon>CIVIL.aspx</DependentUpon>
+    <Compile Include="CourseMaterial.aspx.cs">
+      <DependentUpon>CourseMaterial.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CIVIL.aspx.designer.cs">
-      <DependentUpon>CIVIL.aspx</DependentUpon>
+    <Compile Include="CourseMaterial.aspx.designer.cs">
+      <DependentUpon>CourseMaterial.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -256,12 +311,26 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CSE.aspx.cs">
-      <DependentUpon>CSE.aspx</DependentUpon>
+    <Compile Include="CreateCourse.aspx.cs">
+      <DependentUpon>CreateCourse.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CSE.aspx.designer.cs">
-      <DependentUpon>CSE.aspx</DependentUpon>
+    <Compile Include="CreateCourse.aspx.designer.cs">
+      <DependentUpon>CreateCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateProgram.aspx.cs">
+      <DependentUpon>CreateProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateProgram.aspx.designer.cs">
+      <DependentUpon>CreateProgram.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateSubject.aspx.cs">
+      <DependentUpon>CreateSubject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateSubject.aspx.designer.cs">
+      <DependentUpon>CreateSubject.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -277,13 +346,6 @@
     <Compile Include="Diploma.aspx.designer.cs">
       <DependentUpon>Diploma.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ECE.aspx.cs">
-      <DependentUpon>ECE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ECE.aspx.designer.cs">
-      <DependentUpon>ECE.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,13 +356,6 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HSS.aspx.cs">
-      <DependentUpon>HSS.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HSS.aspx.designer.cs">
-      <DependentUpon>HSS.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -308,19 +363,64 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Mathematiics.aspx.cs">
-      <DependentUpon>Mathematiics.aspx</DependentUpon>
+    <Compile Include="MemberList.aspx.cs">
+      <DependentUpon>MemberList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Mathematiics.aspx.designer.cs">
-      <DependentUpon>Mathematiics.aspx</DependentUpon>
+    <Compile Include="MemberList.aspx.designer.cs">
+      <DependentUpon>MemberList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MECH.aspx.cs">
-      <DependentUpon>MECH.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Models\Answer.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MECH.aspx.designer.cs">
-      <DependentUpon>MECH.aspx</DependentUpon>
+    <Compile Include="Models\Cours.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CourseMaterial.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatabaseModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatabaseModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatabaseModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Member.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Program.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Quiz.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuizCandidate.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuizQuestion.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SessionManager.cs" />
+    <Compile Include="Models\StudentQuiz.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentQuizQuestion.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subject.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="multiplechoicequiz.aspx.cs">
       <DependentUpon>multiplechoicequiz.aspx</DependentUpon>
@@ -329,26 +429,12 @@
     <Compile Include="multiplechoicequiz.aspx.designer.cs">
       <DependentUpon>multiplechoicequiz.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Personal Details.aspx.cs">
-      <DependentUpon>Personal Details.aspx</DependentUpon>
+    <Compile Include="ProgramList.aspx.cs">
+      <DependentUpon>ProgramList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Personal Details.aspx.designer.cs">
-      <DependentUpon>Personal Details.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Physics.aspx.cs">
-      <DependentUpon>Physics.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Physics.aspx.designer.cs">
-      <DependentUpon>Physics.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
+    <Compile Include="ProgramList.aspx.designer.cs">
+      <DependentUpon>ProgramList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.aspx.cs">
@@ -358,12 +444,40 @@
     <Compile Include="Question.aspx.designer.cs">
       <DependentUpon>Question.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Quiz.aspx.cs">
-      <DependentUpon>Quiz.aspx</DependentUpon>
+    <Compile Include="QuestionList.aspx.cs">
+      <DependentUpon>QuestionList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Quiz.aspx.designer.cs">
-      <DependentUpon>Quiz.aspx</DependentUpon>
+    <Compile Include="QuestionList.aspx.designer.cs">
+      <DependentUpon>QuestionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionSelection.aspx.cs">
+      <DependentUpon>QuestionSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuestionSelection.aspx.designer.cs">
+      <DependentUpon>QuestionSelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuizCandidates.aspx.cs">
+      <DependentUpon>QuizCandidates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuizCandidates.aspx.designer.cs">
+      <DependentUpon>QuizCandidates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuizList.aspx.cs">
+      <DependentUpon>QuizList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuizList.aspx.designer.cs">
+      <DependentUpon>QuizList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuizPage.aspx.cs">
+      <DependentUpon>QuizPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuizPage.aspx.designer.cs">
+      <DependentUpon>QuizPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
@@ -372,12 +486,19 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Resoursce.aspx.cs">
-      <DependentUpon>Resoursce.aspx</DependentUpon>
+    <Compile Include="RegisterProfessor.aspx.cs">
+      <DependentUpon>RegisterProfessor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Resoursce.aspx.designer.cs">
-      <DependentUpon>Resoursce.aspx</DependentUpon>
+    <Compile Include="RegisterProfessor.aspx.designer.cs">
+      <DependentUpon>RegisterProfessor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrationConfirmation.aspx.cs">
+      <DependentUpon>RegistrationConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrationConfirmation.aspx.designer.cs">
+      <DependentUpon>RegistrationConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -393,6 +514,34 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="StudentQuiz.aspx.cs">
+      <DependentUpon>StudentQuiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentQuiz.aspx.designer.cs">
+      <DependentUpon>StudentQuiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentQuizList.aspx.cs">
+      <DependentUpon>StudentQuizList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentQuizList.aspx.designer.cs">
+      <DependentUpon>StudentQuizList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubjecctList.aspx.cs">
+      <DependentUpon>SubjecctList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubjecctList.aspx.designer.cs">
+      <DependentUpon>SubjecctList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuizQuestions.aspx.cs">
+      <DependentUpon>QuizQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuizQuestions.aspx.designer.cs">
+      <DependentUpon>QuizQuestions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -401,7 +550,9 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

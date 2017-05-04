@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="eLearningWebPortal.Login" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="page-header">
         <h1>Login</h1>
@@ -9,7 +10,7 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label" aria-label="Left Align">Email / User Name </label>
             <div class="col-sm-10">
-                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control"  TextMode="Email"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" TextMode="Email" ></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ID="reqEmail" ControlToValidate="txtEmail" ErrorMessage="Please enter email address" Display="None"></asp:RequiredFieldValidator>
             </div>
         </div>
@@ -38,5 +39,6 @@
             </div>
         </div>
     </div>
-       
+    
+
 </asp:Content>

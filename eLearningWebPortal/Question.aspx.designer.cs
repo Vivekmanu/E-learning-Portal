@@ -13,6 +13,33 @@ namespace eLearningWebPortal {
     public partial class Question {
         
         /// <summary>
+        /// valSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary valSummary;
+        
+        /// <summary>
+        /// customValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator customValidation;
+        
+        /// <summary>
+        /// hdnId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnId;
+        
+        /// <summary>
         /// lblQuestion control.
         /// </summary>
         /// <remarks>
@@ -29,6 +56,42 @@ namespace eLearningWebPortal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQuestion;
+        
+        /// <summary>
+        /// rfvQuestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvQuestion;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// txtMarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMarks;
+        
+        /// <summary>
+        /// rfvMarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMarks;
         
         /// <summary>
         /// radioAnsOne control.
@@ -49,6 +112,15 @@ namespace eLearningWebPortal {
         protected global::System.Web.UI.WebControls.TextBox txtAnswerOne;
         
         /// <summary>
+        /// rfvanswer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvanswer1;
+        
+        /// <summary>
         /// radioAnsTwo control.
         /// </summary>
         /// <remarks>
@@ -65,6 +137,15 @@ namespace eLearningWebPortal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAnswerTwo;
+        
+        /// <summary>
+        /// rfvanswer2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvanswer2;
         
         /// <summary>
         /// radioAnsThree control.
@@ -85,6 +166,15 @@ namespace eLearningWebPortal {
         protected global::System.Web.UI.WebControls.TextBox txtAnswerThree;
         
         /// <summary>
+        /// rfvanswer3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvanswer3;
+        
+        /// <summary>
         /// radioAnsFour control.
         /// </summary>
         /// <remarks>
@@ -101,6 +191,15 @@ namespace eLearningWebPortal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAnswerFour;
+        
+        /// <summary>
+        /// rfvanswer4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvanswer4;
         
         /// <summary>
         /// btnSaveQuestion control.

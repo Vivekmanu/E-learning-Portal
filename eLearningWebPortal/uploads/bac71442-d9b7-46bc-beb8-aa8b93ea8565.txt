@@ -1,0 +1,90 @@
+HTML elements in ASP.NET files are, by default, treated as text. 
+To make these elements programmable, add a runat="server" attribute to the HTML element.
+ This attribute indicates that the element should be treated as a server control. The id attribute is added to identify the server control. 
+The id reference can be used to manipulate the server control at run time.
+
+
+ The runat="server" attribute indicates that the form should be processed on the server. It also indicates that the enclosed controls can be accessed by server scripts.
+
+
+
+ASP.NET Web Forms
+Submitting a Form
+A form is most often submitted by clicking on a button. The Button server control in ASP.NET has the following format:
+
+<asp:Button id="id" text="label" OnClick="sub" runat="server" />
+The id attribute defines a unique name for the button and the text attribute assigns a label to the button. The onClick event handler specifies a named subroutine 
+to execute.
+
+ASP.NET Web Forms - Maintaining the ViewState
+You may save a lot of coding by maintaining the ViewState of the objects in your Web Form.
+When a form is submitted in classic ASP, all form values are cleared. 
+Suppose you have submitted a form with a lot of information and the server comes back with an error.
+ You will have to go back to the form and correct the information. You click the back button, and what happens.......ALL form values are CLEARED, 
+and you will have to start all over again! The site did not maintain your ViewState.
+
+When a form is submitted in ASP .NET, the form reappears in the browser window together with all form values. How come? This is because ASP .NET maintains your ViewState.
+Maintaining the ViewState is the default setting for ASP.NET Web Forms. If you want to NOT maintain the ViewState, include the directive <%@ Page EnableViewState="false" %> at the top of an .aspx page or add the attribute EnableViewState="false" to any control
+
+<script runat="server">
+Sub submit(sender As Object, e As EventArgs)
+lbl1.Text="Hello " & txt1.Text & "!"
+End Sub
+</script>
+
+<html>
+<body>
+
+<form runat="server">
+Your name: <asp:TextBox id="txt1" runat="server" />
+<asp:Button OnClick="submit" Text="Submit" runat="server" />
+<p><asp:Label id="lbl1" runat="server" /></p>
+</form>
+
+</body>
+</html>
+
+The TextBox Control
+
+
+html>
+<body>
+
+<form runat="server">
+
+A basic TextBox:
+<asp:TextBox id="tb1" runat="server" />
+<br /><br />
+
+A password TextBox:
+<asp:TextBox id="tb2" TextMode="password" runat="server" />
+<br /><br />
+
+A TextBox with text:
+<asp:TextBox id="tb4" Text="Hello World!" runat="server" />
+<br /><br />
+
+A multiline TextBox:
+<asp:TextBox id="tb3" TextMode="multiline" runat="server" />
+<br /><br />
+
+A TextBox with height:
+<asp:TextBox id="tb6" rows="5" TextMode="multiline"
+runat="server" />
+<br /><br />
+
+A TextBox with width:
+<asp:TextBox id="tb5" columns="30" runat="server" />
+
+</form>
+
+</body>
+</html>
+
+
+Add a Script
+The contents and settings of a TextBox control may be changed by server scripts when a form is submitted. 
+A form can be submitted by clicking on a button or when a user changes the value in the TextBox control.
+
+In the following example we declare one TextBox control, one Button control, and one Label control in an .
+aspx file. When the submit button is triggered, the submit subroutine is executed. The submit subroutine writes a text to the Label control:
